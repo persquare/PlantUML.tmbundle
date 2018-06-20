@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/bin/bash
+
+# Render a PlantUML description from the current document (not the saved file).
+# FIXME: If there is a selection, render the selection rather than the full document. (linebreak fup)
+
+[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+
+# FIXME: Check for valid PLANTUML_CMD
+${PLANTUML_CMD} -p -tsvg
+
+# if [[ x"${TM_SELECTED_TEXT}" == x"" ]]
+# then
+#     ${PLANTUML_CMD} -p -tsvg
+# else
+#     echo ${TM_SELECTED_TEXT} | ${PLANTUML_CMD} -p -tsvg
+# fi
+</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@r</string>
+	<key>name</key>
+	<string>Render</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.plantuml</string>
+	<key>uuid</key>
+	<string>66EF45D7-48DE-4DBE-92EF-A0D365797ADF</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

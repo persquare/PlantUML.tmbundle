@@ -8,6 +8,38 @@
 	<string>Florian Breisch</string>
 	<key>description</key>
 	<string>New shiny bundle for X.</string>
+	<key>mainMenu</key>
+	<dict>
+		<key>excludedItems</key>
+		<array>
+		</array>
+		<key>items</key>
+		<array>
+			<string>66EF45D7-48DE-4DBE-92EF-A0D365797ADF</string>
+			<string>9928A2D6-1C8B-4241-957C-ED8D35A66C90</string>
+		</array>
+		<key>submenus</key>
+		<dict>
+			<key>9928A2D6-1C8B-4241-957C-ED8D35A66C90</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>5904F37C-59C3-4162-9A07-AE093BECEAB6</string>
+					<string>764FBFE9-A252-4325-8DA1-BBC48E935344</string>
+					<string>3A975D78-A4A3-4A90-B845-AAE5E592C13B</string>
+					<string>93FFC38F-FFAF-4CDA-BB0E-5A12AFBD00CA</string>
+					<string>D9414A38-0384-47F5-8629-293668C226D3</string>
+					<string>DB08B881-99F6-425A-8902-D858247A718B</string>
+					<string>82F11CB6-E0F4-46EA-B662-CC0D2339859F</string>
+					<string>DE05A291-7D4F-4E8E-A2BB-C89448F621F1</string>
+					<string>1768AA54-86F4-4DE0-85A3-8A58BE964A31</string>
+					<string>7B3A0EE8-9901-4A98-89B6-202BE28E9DE5</string>
+				</array>
+				<key>name</key>
+				<string>Snippets</string>
+			</dict>
+		</dict>
+	</dict>
 	<key>name</key>
 	<string>PlantUML</string>
 	<key>uuid</key>

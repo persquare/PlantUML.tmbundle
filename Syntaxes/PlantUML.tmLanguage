@@ -4,8 +4,9 @@
 <dict>
 	<key>fileTypes</key>
 	<array>
-		<string>txt</string>
 		<string>iuml</string>
+		<string>puml</string>
+		<string>uml</string>
 	</array>
 	<key>firstLineMatch</key>
 	<string>@startuml</string>
@@ -14,8 +15,18 @@
 	<key>patterns</key>
 	<array>
 		<dict>
+			<key>include</key>
+			<string>#comment</string>
+		</dict>
+		<dict>
 			<key>match</key>
-			<string>(?:^\s*)(@startuml|@enduml)\b</string>
+			<string>(?:^\s*)!(define|definelong|else|enddefinelong|endif|exit|if|ifdef|ifndef|include|pragma|undef)\b</string>
+			<key>name</key>
+			<string>meta.preprocessor.plantuml</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?:^\s*)@(enddot|endsalt|enduml|startdot|startsalt|startuml)\b</string>
 			<key>name</key>
 			<string>keyword.control.plantuml</string>
 		</dict>
@@ -39,13 +50,13 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?:^|\s)(\*|o|&lt;\|)?(?:(-+(right|left|up|down))?-+)(\*|o|\|&gt;)?\s+</string>
+			<string>(?:^|\s)(\*|o|&lt;\||\+|#|0|\^|0\))?(?:(-+(right|left|up|down))?-+)(\*|o|\|&gt;|\+|#|0|\^|\(0)?\s+</string>
 			<key>name</key>
 			<string>keyword.operator.relations.plantuml</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?:^|\s)(\*|o|&lt;\|){0,2}(?:(\.+(right|left|up|down))?\.+)(\*|o|\|&gt;){0,2}\s+</string>
+			<string>(?:^|\s)(\*|o|&lt;\||\+|#|0|\^|0\)){0,2}(?:(\.+(right|left|up|down))?\.+)(\*|o|\|&gt;|\+|#|0|\^|\(0){0,2}\s+</string>
 			<key>name</key>
 			<string>keyword.operator.dottedrelations.plantuml</string>
 		</dict>
@@ -81,33 +92,45 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(activate|again|also|alt|as|autonumber|bottom|box|break|center|create|critical|deactivate|destroy|down|else|end|endif|endwhile|footbox|footer|fork|group|header|hide|if|is|left|link|loop|namespace|newpage|note|of|on|opt|over|package|page|par|partition|ref|repeat|return|right|rotate|show|skin|skinparam|start|stop|title|top|top to bottom direction|up|while)\b</string>
-			<key>name</key>
-			<string>keyword.other.plantuml</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?:^\s*)((?i)abstract|actor|agent|artifact|boundary|class|cloud|component|control|database|entity|enum|folder|frame|interface|node|object|participant|rect|state|storage|usecase)\b</string>
+			<string>(?:^\s*)((?i)abstract|actor|agent|archimate|artifact|boundary|card|class|cloud|component|control|database|entity|enum|file|folder|frame|interface|node|object|package|participant|queue|rectangle|stack|state|storage|usecase)\b</string>
 			<key>name</key>
 			<string>support.type.plantuml</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b((?i)Activity2FontColor|Activity2FontName|Activity2FontSize|Activity2FontStyle|ActivityArrow2FontColor|ActivityArrow2FontName|ActivityArrow2FontSize|ActivityArrow2FontStyle|ActivityArrowColor|ActivityBackgroundColor|ActivityBarColor|ActivityBorderColor|ActivityEndColor|ActivityFontColor|ActivityFontName|ActivityFontSize|ActivityFontStyle|ActivityStartColor|ArtifactBackgroundColor|ArtifactBorderColor|BackgroundColor|BoundaryBackgroundColor|BoundaryBorderColor|CircledCharacterFontColor|CircledCharacterFontName|CircledCharacterFontSize|CircledCharacterFontStyle|CircledCharacterRadius|ClassArrowColor|ClassAttributeFontColor|ClassAttributeFontName|ClassAttributeFontSize|ClassAttributeFontStyle|ClassAttributeIconSize|ClassBackgroundColor|ClassBorderColor|ClassFontColor|ClassFontName|ClassFontSize|ClassFontStyle|ClassStereotypeFontColor|ClassStereotypeFontName|ClassStereotypeFontSize|ClassStereotypeFontStyle|CloudBackgroundColor|CloudBorderColor|ComponentBackgroundColor|ComponentBorderColor|ComponentFontColor|ComponentFontName|ComponentFontSize|ComponentFontStyle|ComponentInterfaceBackgroundColor|ComponentInterfaceBorderColor|ComponentStereotypeFontColor|ComponentStereotypeFontName|ComponentStereotypeFontSize|ComponentStereotypeFontStyle|ControlBackgroundColor|ControlBorderColor|DatabaseBackgroundColor|DatabaseBorderColor|DefaultFontColor|DefaultFontName|DefaultFontSize|DefaultFontStyle|EntityBackgroundColor|EntityBorderColor|FolderBackgroundColor|FolderBorderColor|FooterFontColor|FooterFontName|FooterFontSize|FooterFontStyle|FrameBackgroundColor|FrameBorderColor|GenericArrowFontColor|GenericArrowFontName|GenericArrowFontSize|GenericArrowFontStyle|HeaderFontColor|HeaderFontName|HeaderFontSize|HeaderFontStyle|IconPackageBackgroundColor|IconPackageColor|IconPrivateBackgroundColor|IconPrivateColor|IconProtectedBackgroundColor|IconProtectedColor|IconPublicBackgroundColor|IconPublicColor|LegendBackgroundColor|LegendBorderColor|LegendFontColor|LegendFontName|LegendFontSize|LegendFontStyle|Monochrome|NodeBackgroundColor|NodeBorderColor|NoteBackgroundColor|NoteBorderColor|NoteFontColor|NoteFontName|NoteFontSize|NoteFontStyle|ObjectArrowColor|ObjectAttributeFontColor|ObjectAttributeFontName|ObjectAttributeFontSize|ObjectAttributeFontStyle|ObjectBackgroundColor|ObjectBorderColor|ObjectFontColor|ObjectFontName|ObjectFontSize|ObjectFontStyle|ObjectStereotypeFontColor|ObjectStereotypeFontName|ObjectStereotypeFontSize|ObjectStereotypeFontStyle|PackageBackgroundColor|PackageBorderColor|PackageFontColor|PackageFontName|PackageFontSize|PackageFontStyle|PartitionBackgroundColor|PartitionBorderColor|RectangleBackgroundColor|RectangleBorderColor|SequenceActorBackgroundColor|SequenceActorBorderColor|SequenceActorFontColor|SequenceActorFontName|SequenceActorFontSize|SequenceActorFontStyle|SequenceArrowColor|SequenceArrowFontColor|SequenceArrowFontName|SequenceArrowFontSize|SequenceArrowFontStyle|SequenceBoxBackgroundColor|SequenceBoxBorderColor|SequenceBoxFontColor|SequenceBoxFontName|SequenceBoxFontSize|SequenceBoxFontStyle|SequenceDelayFontColor|SequenceDelayFontName|SequenceDelayFontSize|SequenceDelayFontStyle|SequenceDividerBackgroundColor|SequenceDividerFontColor|SequenceDividerFontName|SequenceDividerFontSize|SequenceDividerFontStyle|SequenceGroupBackgroundColor|SequenceGroupBorderColor|SequenceGroupFontColor|SequenceGroupFontName|SequenceGroupFontSize|SequenceGroupFontStyle|SequenceGroupHeaderFontColor|SequenceGroupHeaderFontName|SequenceGroupHeaderFontSize|SequenceGroupHeaderFontStyle|SequenceLifeLineBackgroundColor|SequenceLifeLineBorderColor|SequenceParticipantBackgroundColor|SequenceParticipantBorderColor|SequenceParticipantFontColor|SequenceParticipantFontName|SequenceParticipantFontSize|SequenceParticipantFontStyle|SequenceReferenceBackgroundColor|SequenceReferenceBorderColor|SequenceReferenceFontColor|SequenceReferenceFontName|SequenceReferenceFontSize|SequenceReferenceFontStyle|SequenceReferenceHeaderBackgroundColor|SequenceTitleFontColor|SequenceTitleFontName|SequenceTitleFontSize|SequenceTitleFontStyle|StateArrowColor|StateAttributeFontColor|StateAttributeFontName|StateAttributeFontSize|StateAttributeFontStyle|StateBackgroundColor|StateBorderColor|StateEndColor|StateFontColor|StateFontName|StateFontSize|StateFontStyle|StateStartColor|StereotypeABackgroundColor|StereotypeCBackgroundColor|StereotypeEBackgroundColor|StereotypeIBackgroundColor|StorageBackgroundColor|StorageBorderColor|TitleFontColor|TitleFontName|TitleFontSize|TitleFontStyle|UsecaseActorBackgroundColor|UsecaseActorBorderColor|UsecaseActorFontColor|UsecaseActorFontName|UsecaseActorFontSize|UsecaseActorFontStyle|UsecaseActorStereotypeFontColor|UsecaseActorStereotypeFontName|UsecaseActorStereotypeFontSize|UsecaseActorStereotypeFontStyle|UsecaseArrowColor|UsecaseBackgroundColor|UsecaseBorderColor|UsecaseFontColor|UsecaseFontName|UsecaseFontSize|UsecaseFontStyle|UsecaseStereotypeFontColor|UsecaseStereotypeFontName|UsecaseStereotypeFontSize|UsecaseStereotypeFontStyle)\b</string>
+			<string>\btop to bottom direction\b</string>
+			<key>name</key>
+			<string>keyword.other.plantuml</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(activate|again|also|alt|as|autonumber|bottom|box|break|caption|center|create|critical|deactivate|destroy|down|else|elseif|end|endif|endwhile|footbox|footer|fork|group|header|hide|hnote|if|is|kill|left|legend|link|loop|namespace|newpage|note|of|on|opt|order|over|package|page|par|partition|ref|repeat|return|right|rnote|rotate|show|skin|skinparam|start|stop|title|top|top\ to\ bottom\ direction|up|while)\b</string>
+			<key>name</key>
+			<string>keyword.other.plantuml</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b((?i)Activity2FontColor|Activity2FontName|Activity2FontSize|Activity2FontStyle|ActivityArrow2FontColor|ActivityArrow2FontName|ActivityArrow2FontSize|ActivityArrow2FontStyle|ActivityArrowColor|ActivityBackgroundColor|ActivityBarColor|ActivityBorderColor|ActivityEndColor|ActivityFontColor|ActivityFontName|ActivityFontSize|ActivityFontStyle|ActivityStartColor)\b</string>
 			<key>name</key>
 			<string>constant.language.skinparameter.plantuml</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\s+(#((?i)AliceBlue|AntiqueWhite|Aqua|Aquamarine|Azure|Beige|Bisque|Black|BlanchedAlmond|Blue|BlueViolet|Brown|BurlyWood|CadetBlue|Chartreuse|Chocolate|Coral|CornflowerBlue|Cornsilk|Crimson|Cyan|DarkBlue|DarkCyan|DarkGoldenRod|DarkGray|DarkGreen|DarkGrey|DarkKhaki|DarkMagenta|DarkOliveGreen|DarkOrchid|DarkRed|DarkSalmon|DarkSeaGreen|DarkSlateBlue|DarkSlateGray|DarkSlateGrey|DarkTurquoise|DarkViolet|Darkorange|DeepPink|DeepSkyBlue|DimGray|DimGrey|DodgerBlue|FireBrick|FloralWhite|ForestGreen|Fuchsia|Gainsboro|GhostWhite|Gold|GoldenRod|Gray|Green|GreenYellow|Grey|HoneyDew|HotPink|IndianRed|Indigo|Ivory|Khaki|Lavender|LavenderBlush|LawnGreen|LemonChiffon|LightBlue|LightCoral|LightCyan|LightGoldenRodYellow|LightGray|LightGreen|LightGrey|LightPink|LightSalmon|LightSeaGreen|LightSkyBlue|LightSlateGray|LightSlateGrey|LightSteelBlue|LightYellow|Lime|LimeGreen|Linen|Magenta|Maroon|MediumAquaMarine|MediumBlue|MediumOrchid|MediumPurple|MediumSeaGreen|MediumSlateBlue|MediumSpringGreen|MediumTurquoise|MediumVioletRed|MidnightBlue|MintCream|MistyRose|Moccasin|NavajoWhite|Navy|OldLace|Olive|OliveDrab|Orange|OrangeRed|Orchid|PaleGoldenRod|PaleGreen|PaleTurquoise|PaleVioletRed|PapayaWhip|PeachPuff|Peru|Pink|Plum|PowderBlue|Purple|Red|RosyBrown|RoyalBlue|SaddleBrown|Salmon|SandyBrown|SeaGreen|SeaShell|Sienna|Silver|SkyBlue|SlateBlue|SlateGray|SlateGrey|Snow|SpringGreen|SteelBlue|Tan|Teal|Thistle|Tomato|Turquoise|Violet|Wheat|White|WhiteSmoke|Yellow|YellowGreen))\b</string>
+			<string>\s*(#((?i)AliceBlue|AntiqueWhite|Aqua|Aquamarine|Azure|Beige|Bisque|Black|BlanchedAlmond|Blue|BlueViolet|Brown|BurlyWood|CadetBlue|Chartreuse|Chocolate|Coral|CornflowerBlue|Cornsilk|Crimson|Cyan|DarkBlue|DarkCyan|DarkGoldenRod|DarkGray|DarkGreen|DarkGrey|DarkKhaki|DarkMagenta|DarkOliveGreen|DarkOrchid|DarkRed|DarkSalmon|DarkSeaGreen|DarkSlateBlue|DarkSlateGray|DarkSlateGrey|DarkTurquoise|DarkViolet|Darkorange|DeepPink|DeepSkyBlue|DimGray|DimGrey|DodgerBlue|FireBrick|FloralWhite|ForestGreen|Fuchsia|Gainsboro|GhostWhite|Gold|GoldenRod|Gray|Green|GreenYellow|Grey|HoneyDew|HotPink|IndianRed|Indigo|Ivory|Khaki|Lavender|LavenderBlush|LawnGreen|LemonChiffon|LightBlue|LightCoral|LightCyan|LightGoldenRodYellow|LightGray|LightGreen|LightGrey|LightPink|LightSalmon|LightSeaGreen|LightSkyBlue|LightSlateGray|LightSlateGrey|LightSteelBlue|LightYellow|Lime|LimeGreen|Linen|Magenta|Maroon|MediumAquaMarine|MediumBlue|MediumOrchid|MediumPurple|MediumSeaGreen|MediumSlateBlue|MediumSpringGreen|MediumTurquoise|MediumVioletRed|MidnightBlue|MintCream|MistyRose|Moccasin|NavajoWhite|Navy|OldLace|Olive|OliveDrab|Orange|OrangeRed|Orchid|PaleGoldenRod|PaleGreen|PaleTurquoise|PaleVioletRed|PapayaWhip|PeachPuff|Peru|Pink|Plum|PowderBlue|Purple|Red|RosyBrown|RoyalBlue|SaddleBrown|Salmon|SandyBrown|SeaGreen|SeaShell|Sienna|Silver|SkyBlue|SlateBlue|SlateGray|SlateGrey|Snow|SpringGreen|SteelBlue|Tan|Teal|Thistle|Tomato|Turquoise|Violet|Wheat|White|WhiteSmoke|Yellow|YellowGreen))\b</string>
 			<key>name</key>
-			<string>constant.other.colors.plantuml</string>
+			<string>meta.color.htmlname.plantuml</string>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.color.hex.$3</string>
+				</dict>
+			</dict>
 			<key>match</key>
-			<string>(#[a-fA-F0-9]{6})</string>
-			<key>name</key>
-			<string>constant.numeric.hexcolors.plantuml</string>
+			<string>(#)(([0-9a-fA-F]{6})[0-9a-fA-F]{2}?|[0-9a-fA-F]{3})\b</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -133,6 +156,65 @@
 			</array>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>comment</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comment_block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment_line</string>
+				</dict>
+			</array>
+		</dict>
+		<key>comment_block</key>
+		<dict>
+			<key>begin</key>
+			<string>^\s*(/\x27)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.begin</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\x27/)\s*$</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.end</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>comment.block.plantuml</string>
+		</dict>
+		<key>comment_line</key>
+		<dict>
+			<key>begin</key>
+			<string>^\s*(\x27)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\n</string>
+			<key>name</key>
+			<string>comment.line.plantuml</string>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>source.plantuml</string>
 	<key>semanticClass</key>
