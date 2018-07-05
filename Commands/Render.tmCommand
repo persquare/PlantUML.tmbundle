@@ -3,27 +3,26 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>nop</string>
+	<string>saveActiveFile</string>
 	<key>command</key>
 	<string>#!/bin/bash
 
-# Render a PlantUML description from the current document (not the saved file).
-# FIXME: If there is a selection, render the selection rather than the full document. (linebreak fup)
+# Render a PlantUML description from the current document (autosaves file).
 
 [[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
 
-# FIXME: Check for valid PLANTUML_CMD
-${PLANTUML_CMD} -p -tsvg
+read err line reason &lt;&lt;&lt; $(cat "${TM_FILEPATH}" | ${PLANTUML_CMD} -p -checkonly 2&gt;&amp;1 1&gt;/dev/null)
+line=$((${line}+1))
 
-# if [[ x"${TM_SELECTED_TEXT}" == x"" ]]
-# then
-#     ${PLANTUML_CMD} -p -tsvg
-# else
-#     echo ${TM_SELECTED_TEXT} | ${PLANTUML_CMD} -p -tsvg
-# fi
+if [ x"${err}" == x"" ]; then
+    cat "${TM_FILEPATH}"  | ${PLANTUML_CMD} -p -tsvg
+else
+    echo "&lt;a href=\"txmt://open?url=file://${TM_FILEPATH}&amp;line=${line}\"&gt;${err} in line ${line}&lt;/a&gt;&lt;p&gt;${reason}&lt;/p&gt;"
+fi
+
 </string>
 	<key>input</key>
-	<string>document</string>
+	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
